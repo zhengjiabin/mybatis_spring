@@ -36,6 +36,9 @@ public class TestBean {
         userMapper.insert(user);
     }
     
+    /**
+     * ≤‚ ‘org.mybatis.spring.SqlSessionTemplate
+     */
     @Test
     public void testUserDAO() {
         User user = new User();
