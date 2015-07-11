@@ -3,7 +3,7 @@
   type="WEB"
   name="mybatis_spring"
   id="myeclipse.1434726738856"
-  context-root="/mybatis整合"
+  context-root="/mybatis_spring"
   j2ee-spec="5.0"
   archive="mybatis_spring.war">
   <attributes>
