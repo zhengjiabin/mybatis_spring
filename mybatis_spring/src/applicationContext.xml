@@ -11,7 +11,7 @@
                      http://www.springframework.org/schema/context
                      http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!-- 
-    	spring注解方式注入 
+    	spring自动扫描src包下的带有（@Repository、@Service、@Controller、@Component）注解的文件
     	mybatis自动扫描的配置会影响加载此配置功能
     -->                 
 	<context:component-scan base-package="src" />  
