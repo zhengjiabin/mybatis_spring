@@ -35,8 +35,8 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		
-		<!-- Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值 -->
-		<!-- <property name="mapperLocations" value="classpath*:mapper/*.xml"/> -->
+		<!-- 自动加载mapper文件，Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 		
 		<!-- 
 			如果指定了该属性，那么会以该配置文件的内容作为配置信息构建对应的SqlSessionFactoryBuilder
@@ -63,9 +63,9 @@
 	</bean>
 	
 	<!-- mybatis整合spring方式一：使用mapper接口 -->
-	<!-- 3、加载sql映射文件，分为自动加载、手动加载 -->
-	<!-- 3.1、mybatis自动扫描加载Sql映射文件：MapperScannerConfigurer 
-			basePackage：指定Sql映射文件/接口所在的包(在这个基包或其所有子包下面的Mapper接口都将被搜索到。多个基包之间可以使用逗号或者分号进行分隔) 
+	<!-- 3、加载sql映射接口，分为自动加载、手动加载 -->
+	<!-- 3.1、mybatis自动扫描加载Sql映射接口：MapperScannerConfigurer 
+			basePackage：指定Sql映射接口所在的包(在这个基包或其所有子包下面的Mapper接口都将被搜索到。多个基包之间可以使用逗号或者分号进行分隔) 
 	-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 
@@ -74,7 +74,7 @@
 		-->
 		
 		<!-- 1、定义基包 -->
-		<property name="basePackage" value="mapper" />
+		<property name="basePackage" value="dao" />
 		
 		<!-- 2、当指定了annotationClass的时候，MapperScannerConfigurer将只注册使用了annotationClass注解标记的接口 -->
 		<!-- <property name="annotationClass" value = "mapper.AnnotationMapper"/> -->
@@ -86,7 +86,7 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<!-- 3.2手动加载sql映射文件 -->
+	<!-- 3.2手动加载sql映射接口 -->
 	<!-- <bean id="UserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="mapper.UserMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
@@ -94,17 +94,17 @@
 	
 	
 	<!-- mybatis整合spring方式二：使用SqlSessionTemplate对象 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
        <constructor-arg index="0" ref="sqlSessionFactory" />
-    </bean>
+    </bean> -->
     
-    <bean id="userDAOImpl" class="dao.impl.UserDAOImpl">     
-		<!--注入SqlSessionTemplate实例 -->      
+    <!-- <bean id="userDAOImpl" class="dao.impl.UserDAOImpl">     
+		注入SqlSessionTemplate实例      
 		<property name="sqlSessionTemplate" ref="sqlSession" />
 		     
-		  <!--也可直接注入SqlSessionFactory实例，二者都指定时，SqlSessionFactory失效 -->     
-		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" />    -->  
-	</bean>
+		  也可直接注入SqlSessionFactory实例，二者都指定时，SqlSessionFactory失效     
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />     
+	</bean> -->
 	
 
 	<!-- 4、事务管理：DataSourceTransactionManager -->

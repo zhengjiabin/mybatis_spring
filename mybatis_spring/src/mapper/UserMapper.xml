@@ -4,7 +4,7 @@
 	namespace：与对应的接口类全名一致
 	id：与对应接口的某个对应的方法名一致
  -->
-<mapper namespace="mapper.UserMapper" >
+<mapper namespace="dao.UserMapper" >
   <resultMap id="BaseResultMap" type="bean.User" >
     <id column="m_user_id" property="id" jdbcType="INTEGER" />
     <result column="m_user_name" property="name" jdbcType="VARCHAR" />
